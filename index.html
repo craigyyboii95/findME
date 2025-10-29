@@ -84,7 +84,7 @@
   <header>
     <div class="glow"></div>
     <h1>ANON Privacy Suite</h1>
-    <p>World-class online privacy suite for investigation & proactive digital defence. Harness AI-driven technology to uncover your digital footprint. ANON searches every corner of the internet — surface to dark web — revealing every trace of your personal data.</p>
+    <p>World-class online privacy suite for investigation & proactive digital defence. Harness AI-driven technology to uncover your digital footprint.</p>
     <a href="#scan" class="cta">Start Your Scan</a>
   </header>
 
@@ -172,6 +172,20 @@
       { name: "Trace Hunter", emoji: "🕵️‍♂️" }
     ];
 
+    document.querySelector(".cta").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("scan").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("loading").style.display = "block";
+      document.getElementById("scanSound").play();
+      output.innerHTML = "";
+      progressBar.style.width = "0%";
+      i = 0;
+      setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+        revealTrace();
+      }, 3000);
+    });
+
     let i = 0;
     function revealTrace() {
       if (i < traces.length) {
@@ -189,11 +203,4 @@
 
     function updateThreatLevel(score) {
       threatBar.style.width = `${score}%`;
-      if (score < 30) threatLabel.textContent = "🟢 Low Risk";
-      else if (score < 70) threatLabel.textContent = "🟠 Moderate Risk";
-      else threatLabel.textContent = "🔴 High Risk";
-    }
-
-    function revealPersona() {
-      const persona = personas[Math.floor(Math.random() * personas.length)];
-      personaReveal
+      if (score < 30) threatLabel.text

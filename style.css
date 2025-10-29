@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANON Privacy Suite</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="glow"></div>
+    <h1>ANON Privacy Suite</h1>
+    <p>World-class online privacy suite for investigation & proactive digital defence.</p>
+    <a href="#scan" class="cta">Start Your Scan</a>
+  </header>
+
+  <div id="loading" style="display:none; text-align:center; padding:2rem;">
+    <div class="spinner"></div>
+    <p>Scanning your digital footprint...</p>
+  </div>
+
+  <audio id="scanSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c7b6a7c3f.mp3?filename=scan-113441.mp3"></audio>
+
+  <section id="scan">
+    <h2>Initiating Deep Web Scan...</h2>
+    <div id="scanOutput"></div>
+    <div class="progress-container">
+      <div id="progressBar"></div>
+    </div>
+  </section>
+
+  <section id="threatLevel">
+    <h2>Threat Level</h2>
+    <div class="progress-container">
+      <div id="threatBar"></div>
+    </div>
+    <p id="threatLabel"></p>
+  </section>
+
+  <section id="personaReveal"></section>
+
+  <section id="badges">
+    <h2>Unlocked Badges</h2>
+    <div id="badgeList"></div>
+  </section>
+
+  <section id="upgrade">
+    <h2>Choose Your Defence Tier</h2>
+    <div class="tiers">
+      <div><h3>🛡️ Basic Scan</h3><p>Surface web only.</p><strong>$9</strong></div>
+      <div><h3>🕵️ Full Exposure</h3><p>Surface + Deep + Dark Web.</p><strong>$29</strong></div>
+      <div><h3>👻 Dark Web Defense</h3><p>Real-time alerts.</p><strong>$59</strong></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

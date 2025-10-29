@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANON Privacy Suite</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f0f0f, #000);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #00f5ff, #ff00c8);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: pulse 3s infinite;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .cta {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #00f5ff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    .cta:hover {
+      transform: scale(1.05);
+    }
+    .glow {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #00f5ff33, transparent);
+      transform: translateX(-50%);
+      animation: float 6s ease-in-out infinite;
+      z-index: -1;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    @keyframes float {
+      0% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(20px); }
+      100% { transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    #upgrade div {
+      background:#222;
+      padding:2rem;
+      border-radius:10px;
+      width:250px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="glow"></div>
+    <h1>ANON Privacy Suite</h1>
+    <p>World-class online privacy suite for investigation & proactive digital defence. Harness AI-driven technology to uncover your digital footprint. ANON searches every corner of the internet — surface to dark web — revealing every trace of your personal data.</p>
+    <a href="#scan" class="cta">Start Your Scan</a>
+  </header>
+
+  <div id="loading" style="display:none; text-align:center; padding:2rem;">
+    <div style="margin:auto; width:60px; height:60px; border:6px solid #00f5ff; border-top:6px solid transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+    <p style="margin-top:1rem;">Scanning your digital footprint...</p>
+  </div>
+
+  <audio id="scanSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6c7b6a7c3f.mp3?filename=scan-113441.mp3"></audio>
+
+  <section id="scan">
+    <h2>Initiating Deep Web Scan...</h2>
+    <div id="scanOutput" style="font-size:1.2rem; line-height:1.6; min-height:100px;"></div>
+    <div style="margin-top:2rem;">
+      <div style="width:80%; margin:0 auto; background:#222; border-radius:10px;">
+        <div id="progressBar" style="width:0%; height:20px; background:#00f5ff; border-radius:10px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="threatLevel">
+    <h2>Threat Level</h2>
+    <div style="width:80%; margin:1rem auto; background:#222; border-radius:10px;">
+      <div id="threatBar" style="width:0%; height:20px; background:#ff0044; border-radius:10px;"></div>
+    </div>
+    <p id="threatLabel" style="margin-top:1rem; font-weight:bold;"></p>
+  </section>
+
+  <section id="personaReveal"></section>
+
+  <section id="badges">
+    <h2>Unlocked Badges</h2>
+    <div id="badgeList" style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;"></div>
+  </section>
+
+  <section id="upgrade" style="background:#111;">
+    <h2>Choose Your Defence Tier</h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem;">
+      <div>
+        <h3>🛡️ Basic Scan</h3>
+        <p>Surface web only. One-time report.</p>
+        <strong>$9</strong>
+      </div>
+      <div>
+        <h3>🕵️ Full Exposure</h3>
+        <p>Surface + Deep + Dark Web. Monthly updates.</p>
+        <strong>$29</strong>
+      </div>
+      <div>
+        <h3>👻 Dark Web Defense</h3>
+        <p>Real-time alerts. AI shielding. Full anonymization.</p>
+        <strong>$59</strong>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const output = document.getElementById("scanOutput");
+    const progressBar = document.getElementById("progressBar");
+    const threatBar = document.getElementById("threatBar");
+    const threatLabel = document.getElementById("threatLabel");
+    const badgeList = document.getElementById("badgeList");
+    const personaReveal = document.getElementById("personaReveal");
+
+    const traces = [
+      "🔍 Surface Web: Email address found on public forums",
+      "🔍 Deep Web: Username linked to leaked credentials",
+      "🔍 Dark Web: Phone number listed in breach archive",
+      "🔍 Social Graph: Location data inferred from photo metadata",
+      "🔍 AI Analysis: Behavioral fingerprint matched to 3 profiles"
+    ];
+
+    const personas = [
+      { name: "The Influencer", traits: "High social exposure", tier: "Shield Your Brand" },
+      { name: "The Activist", traits: "Political footprint detected", tier: "Dark Web Defense" },
+      { name: "The Developer", traits: "Tech leaks and forum traces", tier: "Code Cloak" },
+      { name: "The Ghost", traits: "Minimal footprint, metadata vulnerable", tier: "Stay Invisible" }
+    ];
+
+    const badgePool = [
+      { name: "Data Breach Survivor", emoji: "🧨" },
+      { name: "Dark Web Detected", emoji: "🌑" },
+      { name: "Metadata Ghost", emoji: "👻" },
+      { name: "Social Leak", emoji: "📸" },
+      { name: "Trace Hunter", emoji: "🕵️‍♂️" }
+    ];
+
+    let i = 0;
+    function revealTrace() {
+      if (i < traces.length) {
+        output.innerHTML += `<p>${traces[i]}</p>`;
+        progressBar.style.width = `${((i + 1) / traces.length) * 100}%`;
+        i++;
+        setTimeout(revealTrace, 1500);
+      } else {
+        output.innerHTML += `<p style="color:#ff00c8; font-weight:bold;">Scan Complete. Digital footprint exposed.</p>`;
+        updateThreatLevel(Math.floor(Math.random() * 100));
+        revealPersona();
+        unlockBadges();
+      }
+    }
+
+    function updateThreatLevel(score) {
+      threatBar.style.width = `${score}%`;
+      if (score < 30) threatLabel.textContent = "🟢 Low Risk";
+      else if (score < 70) threatLabel.textContent = "🟠 Moderate Risk";
+      else threatLabel.textContent = "🔴 High Risk";
+    }
+
+    function revealPersona() {
+      const persona = personas[Math.floor(Math.random() * personas.length)];
+      personaReveal
